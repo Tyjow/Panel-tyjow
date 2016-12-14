@@ -1,4 +1,16 @@
 <div class="container col-md-12 nav-flex">
+
+	<div class="sidebar_custom">
+		<div class="box_button">
+			<a ng-click="blank_text()" data-title="Add" data-toggle="modal" data-target="#add" class="add_button btn_gradient">
+				<span>
+					<i class="fa fa-plus"></i>
+				</span>
+			</a>
+			<h4>Ajouter un article</h4>
+		</div>
+	</div>
+
 	<div class="title">
 		<h1>2TECH</h1>
 	</div>
@@ -29,37 +41,39 @@
 			<ul>
 				<li class="col-md-3">
 					<h3>Nom</h3>
-					<p ng-model="articles">{{articles}}</p>
+					<div class="box_desc">
+						<p ng-model="articles">{{articles | capitalize}}</p>
+					</div>
 				</li>
 				<li class="col-md-3">
 					<h3>Description</h3>
-					<p ng-model="description">{{description}}</p>
+					<div class="box_desc">
+						<p ng-class="{tronque : tronqueClass === 'active'}" ng-model="description">{{description | capitalize}}</p>
+					</div>
 				</li>
 				<li class="col-md-3">
 					<h3>Référence</h3>
-					<p ng-model="reference">{{reference}}</p>
+					<div class="box_desc">
+						<p ng-model="reference">{{reference}}</p>
+					</div>
 				</li>
 				<li class="col-md-3">
 					<h3>Fournisseur(s)</h3>
-					<p ng-model="fournisseurs">{{fournisseurs}}</p>
+					<div class="box_desc">
+						<p ng-model="fournisseurs">{{fournisseurs | capitalize}}</p>
+					</div>
 				</li>
 				<li class="col-md-3">
 					<h3>Quantités</h3>
-					<p ng-model="stock">{{stock}}</p>
+					<div class="box_desc">
+						<p ng-model="stock">{{stock}}</p>
+					</div>
 				</li>
 			</ul>
 		</div>
 	</div>
 
 	<div class="middle_article">
-		<div class="box_button">
-			<a ng-click="blank_text()" data-title="Add" data-toggle="modal" data-target="#add" class="add_button btn_gradient">
-				<span>
-					<i class="fa fa-plus"></i>
-				</span>
-			</a>
-			<h4>Ajouter un article</h4>
-		</div>
 
 		<div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="add" aria-hidden="true">
 			<div class="modal-dialog">
@@ -155,7 +169,7 @@
 								<td class="table-data"><p>{{data.stock}}</p></td>
 								<td class="table-data select_box">
 									<div class="box_butt">
-										<input ng-click="get_by_id(data.id)" ng-model="checky" id="result" type="radio" name="id"/><span class="customRadio"></span>
+										<input ng-click="get_by_id(data.id); changeClass()" ng-model="checky" id="result" type="radio" name="id"/><span class="customRadio"></span>
 									</div>
 									<div class="box_butt" data-placement="top" data-toggle="tooltip" title="Edit">
 										<button ng-click="get_by_id(data.id)" class="btn btn-primary btn-xs btn-custom" data-title="Edit" data-toggle="modal" data-target="#edit" >

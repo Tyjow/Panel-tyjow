@@ -72,3 +72,12 @@ nav ul li a {
 nav ul li a:hover {
 	text-decoration: none;
 }
+
+/*** sidebar ***/
+
+.sidebar_custom {
+	left: 0;
+	margin-top: -75px; /* (li * a:width) / -2 */
+	position: fixed;
+	top: 25%;
+}

@@ -40,6 +40,13 @@ app.controller('DataCtrl', function($scope, $http, $resource, DTOptionsBuilder, 
 		$scope.date = $scope.blankText;
 	}
 
+	$scope.tronqueClass = 'unactive';
+
+	$scope.changeClass = function() {
+			$scope.tronqueClass = 'active';
+
+	}
+
 	var vm = this;
 	$scope.get_articles = function() {
 	    $http.get('inc/fonction.php?action=get_articles').success(function(datas) {
