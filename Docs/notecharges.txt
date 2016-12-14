@@ -1,0 +1,64 @@
+[cahier des charges ]
+
+
+1° l'agence 
+
+	La code academie :
+
+	descriptif + cadres soutenances 
+
+	wanalike :
+
+	initiateur du project
+
+2° descriptif du projet 
+
+	qui ?(2tech)  fonction de l'application 
+
+	quoi ? pourquoi ? pour qui ? (intranet)
+
+	par qui ?(initialisé par wanalike)
+				(developper par la code academie)
+
+3°  description fonctionnel 
+	
+		gestion des composants -> sur une seul page
+
+		recherche
+
+		compte utilisateurs (admin/user simple)
+
+4° contrainte
+		
+		techniques(php,linux, mysql) config serveur
+
+		budget (0 euro)
+
+		equipe(redfish,tyjow)
+		
+		temps(aucune limite imposé par le clients)
+
+		estimation initial (11 semaines)
+
+		estimation soutenances(7 semaines)
+
+5° graphique
+		
+		pas de chartes (simple ,fonctionnels et facile d'acces )
+
+		ajout/modification -> sur une seul page 
+
+6° planning 
+
+		7semaines 
+
+7° rendue attendue 
+		cahier des charges 
+
+		spec techniques
+
+		spec fonctionnel
+
+		documentation/notice
+
+		

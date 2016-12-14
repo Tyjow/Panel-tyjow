@@ -1,0 +1,182 @@
+
+fonctions de
+service principales
+
+
+
+1. S'identifié via le formulaire  avec la saisie des champs : 
+pseudo 
+
+password
+
+2. acceder a la page principale 
+
+3. gestion des artciles
+
+3.1 ajout d'un article: create /insert into * from article
+
+		designation
+
+		description
+
+		references
+
+		fournisseurs 
+
+		emplacements
+
+		rampes
+
+		allée
+
+		etages
+
+3.2 affichage d'un article : read /select * from article
+ 		
+		designation
+
+		description
+
+		references
+
+		fournisseurs 
+
+		emplacements
+
+		rampes
+
+		allée
+
+		etages
+
+
+
+
+
+3.3 modification d'un article : update / update * from article
+ 		
+		designation
+
+		description
+
+		references
+
+		fournisseurs 
+
+		emplacements
+
+		rampes
+
+		allée
+
+		etages
+
+
+3.4 suppression d'un article : delete /delete * from article
+ 		
+		designation
+
+		description
+
+		references
+
+		fournisseurs 
+
+		emplacements
+
+		rampes
+
+		allée
+
+		etages
+
+
+
+3.5 rechercher un article :
+
+Un article peu etre recherche de plusieur manieres :
+
+ 3.5.1:
+. Par le champs de recherche par articles dans la barre de navigations en haut de la page principale
+
+. Par le champs de recherche par emplacement en bas de la page principale
+
+3.5.2:
+  Sur la pages "articles" , un tableau affiche les articles et contient un champ de recherches dynamique en haut a gauche du tableau 
+
+
+
+
+4. gestion des utilisateurs :
+
+4.1
+ si un utilisateur est enregistrer en tant qu'admin... alors il peu ajouté des utilisateurs dans la pages "gestion utilistateurs" en cliquant sur le bouton envoyer en haut de page , des lors survient une fenetre modal comportant les champs neccessaires pour saisir l'identifiant et le mots de pass de l'utilisteur
+
+
+4.2  Rechercher un utilisateur :
+
+		Un utilisteur peu etre recherche de la maniere suivante:
+		Sur la pages "gestion utilisateurs" , un tableau affiche les articles et contient un champ de recherches dynamique en haut a gauche du tableau  	
+ 
+
+5. Architecture technique
+Cette application devant être dynamique, cette application sera implémentée en
+HTML5, CSS3 et PHP7. Le serveur sur lequel sera installé cette application devra
+disposer d’un apache2 et devra supporter la version PHP7 .
+Le nombre de comptes utilisateurs n’excedera pas les 100 utilisateurs. Avec un
+maximum de 10 utilisateurs connectés simultanément.
+Le nombre d’enregistrements d’articles dans la base de données, n’excedera pas
+les 10 000 articles.
+
+
+
+5.1 Exigences vis à vis du logiciel
+  	Cette application devra être compatibles pour les versions de navigateurs suivants
+
+			Internet explorer supérieur à la version 7
+			Firefox supérieur à la version 5
+			Safari supérieur à la version 5
+			Opéra supérieur à la version 11
+
+
+
+fonctionnement de la base de données 
+
+La base de données est composée de trois tables : 
+
+article: 
+cette table est composée de 7 champs ou peuvent etre definits les differentes informations concernant 
+l'enregistrement  des entrées et sorties des articles .
+
+les champs suivant peuvent etre modifier via l'interface du panel , a la page principales :
+
+	ID: est non nul et auto incrementé ,il definit l'identifiant de l'article
+
+	article: est non nul , en varchar(255),l'encodage est en utf8 , il definit la designation de l'articles
+
+	reference: est non nul, en varchar(255), il definit la references de l'article 
+
+	fournisseurs: est non nul, en varchar(255), il definit le nom du/des fournisseur(s) de l'article
+
+	date: est non nul, les fonctions de php/mysql permet de generer la date au format Y-m-d H:i:s 
+
+	stock: est non nul, en varchar(255), il definit le nombre d'article en stock pour un articles ciblé 
+
+fournisseurs: 
+cette table est composées de 5 champs ou peuvent etre definits les differentes information concernant l'enregistrement des fournisseurs .
+
+les champs suivant peuvent etre modifier via l'interface du panel , a la page principales 
+
+
+users: cette table est composée de 5 champs ou peuvent etre definits les differentes informations concernant l'enregistrement des utilisateurs .
+
+
+
+			
+
+
+
+
+
+
+

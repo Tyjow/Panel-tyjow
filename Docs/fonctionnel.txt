@@ -1,0 +1,47 @@
+specification fonctionnel 
+
+
+les sprints sont repartir par semaine : 1sprint = 1semaine
+
+----1er sprint -----
+
+jour 1 et 2
+conception,mise en place et test de la fonctionnalité de read (crud)
+
+la fonctionnalitée du read ce compose de la requete sql suivante : 
+
+(select * from tabs where id = ?) ; elle permet de recuperer les informations dans la base de données avec certaine contrainte etant adapter via des arguments differents pour chaques cas 
+
+cette fonctionnalitée pour etre utiliser sur les utilisateurs les composants ou les fournisseurs de tels sort que par exemple la requete suivante sera mise en place : 
+
+SELECT descritption from articles where id = ? ; cette requete permet par exemple de recuperé la description d'un article dont l'id est specifier par un formulaire avec un champs input 
+
+le champs de recherche et certain autre fonction pourront integré cette requete en ciblant l'id 
+
+Un champs et un bouton seront mis en place par le developper front end
+ 
+
+
+jours 3 et 4
+conception,mise en place et test de la fonctionnalité de create (crud)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-----------------

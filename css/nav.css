@@ -1,0 +1,73 @@
+.nav-flex {
+	display: flex;
+	justify-content: space-around;
+	background-color: #f2f2f2;
+	color: #ccc;
+	padding-top: 0.5em;
+	padding-bottom: 0.5em;
+	box-shadow: 0 5px 5px -5px #333;
+}
+.title {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.title > h1 {
+	margin: 0;
+	font-size: 2em;
+	color: #73879C;
+}
+.log {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.log a {
+	font-size: 1.35em;
+	color: #73879C;
+	text-decoration: none;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+.log a:hover {
+	text-decoration: none;
+}
+.glyphdeco {
+	margin-right: 0.5em;
+	font-size: 0.8em;
+	margin-top: 0.1em;
+}
+nav {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+nav ul {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+ul {
+	margin: 0;
+	padding: 0;
+}
+nav ul li {
+	display:inline-block;
+	list-style:none;
+	text-align:center;
+	color:#fff;
+	padding:10px 20px 10px 20px;
+	margin:-1px -5px -1px -1px;
+	cursor:pointer;
+	transition:all .2s;
+	-webkit-transition:all .2s;
+}
+nav ul li a {
+	font-size: 1.35em;
+	color: #73879C;
+	text-decoration: none;
+}
+nav ul li a:hover {
+	text-decoration: none;
+}
