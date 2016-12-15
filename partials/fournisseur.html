@@ -7,7 +7,7 @@
 					<i class="fa fa-plus"></i>
 				</span>
 			</a>
-			<h4>Ajouter un article</h4>
+			<h4>Ajouter un fournisseur</h4>
 		</div>
 	</div>
 
@@ -27,46 +27,34 @@
 </div>
 
 <div class="intro">
-	<h1>Gestion des stocks</h1>
+	<h1>Liste des fournisseurs</h1>
 </div>
 
 <div class="article">
 	
 	<div class="header_article">
 		<div class="img_article">
-			<img src="img/logo.jpg" alt="Aucun article sélectionné."/>
+			<img src="img/logo.jpg" alt="Aucun fournisseurs sélectionné."/>
 		</div>
 		<div class="content_article">
 			<h2>Information</h2>
 			<ul>
-				<li class="col-md-3">
+				<li class="col-md-4">
 					<h3>Nom</h3>
 					<div class="box_desc">
-						<p ng-model="articles">{{articles | capitalize}}</p>
+						<p ng-model="name">{{name | capitalize}}</p>
 					</div>
 				</li>
-				<li class="col-md-3">
-					<h3>Description</h3>
+				<li class="col-md-4">
+					<h3>Localisation</h3>
 					<div class="box_desc">
-						<p class="tronque_hov" ng-class="{tronque : tronqueClass === 'active'}" ng-model="description">{{description | capitalize}}</p>
+						<p ng-model="localisation">{{localisation | capitalize}}</p>
 					</div>
 				</li>
-				<li class="col-md-3">
+				<li class="col-md-4">
 					<h3>Référence</h3>
 					<div class="box_desc">
-						<p ng-model="reference">{{reference}}</p>
-					</div>
-				</li>
-				<li class="col-md-3">
-					<h3>Fournisseur(s)</h3>
-					<div class="box_desc">
-						<p ng-model="fournisseurs">{{fournisseurs | capitalize}}</p>
-					</div>
-				</li>
-				<li class="col-md-3">
-					<h3>Quantités</h3>
-					<div class="box_desc">
-						<p ng-model="stock">{{stock}}</p>
+						<p ng-model="referenceF">{{referenceF}}</p>
 					</div>
 				</li>
 			</ul>
@@ -81,28 +69,23 @@
 
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-						<h3 class="modal-title custom_align" id="Heading">Ajouter un article</h3>
+						<h3 class="modal-title custom_align" id="Heading">Ajouter un fournisseur</h3>
 					</div>
 
 					<div class="modal-body">
 						<div class="form-group">
 							<h4>Nom</h4>
-							<input class="form-control " name="articles" ng-model="articlesAdd" type="text" placeholder="Nom...">
+							<input class="form-control " name="name" ng-model="nameAdd" type="text" placeholder="Nom...">
 						</div>
 
 						<div class="form-group">
-							<h4>Description</h4>
-							<textarea rows="5" class="form-control area" name="description" ng-model="descriptionAdd" type="text" placeholder="Description..."></textarea>
+							<h4>Localisation</h4>
+							<input class="form-control" name="localisation" ng-model="localisationAdd" type="text" placeholder="Localisation...">
 						</div>
 
 						<div class="form-group">
 							<h4>Référence</h4>
-							<input class="form-control " name="reference" ng-model="referenceAdd" type="text" placeholder="Référence...">
-						</div>
-
-						<div class="form-group">
-							<h4>Fournisseur</h4>
-							<input class="form-control " name="fournisseurs" ng-model="fournisseursAdd" type="text" placeholder="Fournisseur...">
+							<input class="form-control " name="reference" ng-model="referenceAddF" type="text" placeholder="Référence...">
 						</div>
 
 						<div class="form-group">
@@ -112,15 +95,10 @@
 	  							<p>Cliquez sur le champ pour sélectionner la date.</p>
   							</div>
 						</div>
-
-						<div class="form-group">
-							<h4>Quantité</h4>
-							<input class="form-control " name="stock" ng-model="stockAdd" type="text" placeholder="Quantité...">
-						</div>
 					</div>
 
 					<div class="modal-footer ">
-						<button name="add_article" ng-click="add_article()" type="button" class="btn btn-warning btn-lg btn-color-custom" style="width: 100%;"><span class="glyphicon glyphicon-ok-sign"></span> Ajouter l'article</button>
+						<button name="add_fournisseur" ng-click="add_fournisseur()" type="button" class="btn btn-warning btn-lg btn-color-custom" style="width: 100%;"><span class="glyphicon glyphicon-ok-sign"></span> Ajouter le fournisseur</button>
 					</div>
 
 				</div>
@@ -133,51 +111,45 @@
 		<div class="inner_search_article">
 			<div class="content_table">
 				<form method="POST">
-					<table id="example" dt-options="dtOptions" datatable="ng" class="row-border hover" ng-init="get_articles()">
+					<table id="example" dt-options="dtOptions" datatable="ng" class="row-border hover" ng-init="get_fournisseurs()">
 						<thead>
 							<tr>
 							  <!-- <th class="table_link">Id</th> -->
-							  <th class="table_link">Article</th>
-							  <th class="table_link">Description</th>
+							  <th class="table_link">Nom</th>
+							  <th class="table_link">Localisation</th>
 							  <th class="table_link">Référence</th>
-							  <th class="table_link">Fournisseurs</th>
 							  <th class="table_link">Date</th>
-							  <th class="table_link">Quantités</th>
 							  <th class="table_link">Sélectionnez</th>
 							</tr>
 						</thead>
 						<tfoot>
 							<tr>
 							  <!-- <th class="table_link_foot">Id</th> -->
-							  <th class="table_link_foot">Article</th>
-							  <th class="table_link_foot">Description</th>
+							  <th class="table_link_foot">Nom</th>
+							  <th class="table_link_foot">Localisation</th>
 							  <th class="table_link_foot">Référence</th>
-							  <th class="table_link_foot">Fournisseurs</th>
 							  <th class="table_link_foot">Date</th>
-							  <th class="table_link_foot">Quantités</th>
 							  <th class="table_link_foot">Sélectionnez</th>
 							</tr>
 						</tfoot>
 						<tbody>
 							<tr ng-repeat="data in showCase.datas track by $index" class='table-line'>
 								<!-- <td class="table-data"><p>{{data.id}}</p></td> -->
-								<td class="table-data"><p>{{data.articles | capitalize}}</p></td>
-								<td class="table-data"><p class="tronque">{{data.description | capitalize}}</p></td>
+								<td class="table-data"><p>{{data.name | capitalize}}</p></td>
+								<td class="table-data"><p>{{data.localisation | capitalize}}</p></td>
 								<td class="table-data"><p>{{data.reference}}</p></td>
-								<td class="table-data"><p>{{data.fournisseurs | capitalize}}</p></td>
 								<td class="table-data"><p>{{data.date}}</p></td>
-								<td class="table-data"><p>{{data.stock}}</p></td>
 								<td class="table-data select_box">
 									<div class="box_butt">
-										<input ng-click="get_by_id(data.id); changeClass()" ng-model="checky" id="result" type="radio" name="id"/><span class="customRadio"></span>
+										<input ng-click="get_id_fournisseurs(data.id)" ng-model="checky" id="result" type="radio" name="id"/><span class="customRadio"></span>
 									</div>
 									<div class="box_butt" data-placement="top" data-toggle="tooltip" title="Edit">
-										<button ng-click="get_by_id(data.id)" class="btn btn-primary btn-xs btn-custom" data-title="Edit" data-toggle="modal" data-target="#edit" >
+										<button ng-click="get_id_fournisseurs(data.id)" class="btn btn-primary btn-xs btn-custom" data-title="Edit" data-toggle="modal" data-target="#edit" >
 											<img src="img/pencil.png">
 										</button>
 									</div>
 									<div class="box_butt" data-placement="top" data-toggle="tooltip" title="Delete">
-										<button ng-click="get_by_id(data.id)" class="btn btn-primary btn-xs btn-custom" data-title="Delete" data-toggle="modal" data-target="#delete" >
+										<button ng-click="get_id_fournisseurs(data.id)" class="btn btn-primary btn-xs btn-custom" data-title="Delete" data-toggle="modal" data-target="#delete" >
 											<img src="img/cross.png">
 										</button>
 									</div>
@@ -187,15 +159,15 @@
 
 												<div class="modal-header">
 													<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-													<h3 class="modal-title custom_align" id="Heading">Supprimer l'article</h3>
+													<h3 class="modal-title custom_align" id="Heading">Supprimer le fournisseur</h3>
 												</div>
 
 												<div class="modal-body">
-													<p class="valid_text">Etes-vous sûr de vouloir supprimer l'article ?</p>
+													<p class="valid_text">Etes-vous sûr de vouloir supprimer le fournisseur ?</p>
 												</div>
 
 												<div class="modal-footer ">
-													<button ng-click="delete_article(data.id)" type="button" class="btn btn-warning btn-lg btn-color-custom" style="width: 100%;"><span class="glyphicon glyphicon-ok-sign"></span> Supprimer l'article</button>
+													<button ng-click="delete_fournisseur(data.id)" type="button" class="btn btn-warning btn-lg btn-color-custom" style="width: 100%;"><span class="glyphicon glyphicon-ok-sign"></span> Supprimer le fournisseur</button>
 												</div>
 
 											</div>
@@ -216,33 +188,23 @@
 
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-					<h3 class="modal-title custom_align" id="Heading">Modifier l'article</h3>
+					<h3 class="modal-title custom_align" id="Heading">Modifier le fournisseur</h3>
 				</div>
 
 				<div class="modal-body">
 					<div class="form-group">
 						<h4>Nom</h4>
-						<input class="form-control " name="articles" ng-model="articles" type="text" placeholder="Nom...">
+						<input class="form-control " name="name" ng-model="name" type="text" placeholder="Nom...">
 					</div>
 
 					<div class="form-group">
-						<h4>Description</h4>
-						<textarea rows="5" class="form-control area" name="description" ng-model="description" type="text" placeholder="Description..."></textarea>
+						<h4>Localisation</h4>
+						<input class="form-control" name="localisation" ng-model="localisation" type="text" placeholder="Localisation...">
 					</div>
 
 					<div class="form-group">
 						<h4>Référence</h4>
-						<input class="form-control " name="reference" ng-model="reference" type="text" placeholder="Référence...">
-					</div>
-
-					<div class="form-group">
-						<h4>Fournisseur</h4>
-						<input class="form-control " name="fournisseurs" ng-model="fournisseurs" type="text" placeholder="Fournisseur...">
-					</div>
-
-					<div class="form-group">
-						<h4>Quantité</h4>
-						<input class="form-control " name="stock" ng-model="stock" type="text" placeholder="Quantité...">
+						<input class="form-control " name="reference" ng-model="referenceF" type="text" placeholder="Référence...">
 					</div>
 
 					<!-- <div class="form-group">
@@ -251,7 +213,7 @@
 				</div>
 
 				<div class="modal-footer ">
-					<button name="update_article" ng-click="update_article()" type="button" class="btn btn-warning btn-lg btn-color-custom" style="width: 100%;"><span class="glyphicon glyphicon-ok-sign"></span> Mettre à jour</button>
+					<button name="update_fournisseur" ng-click="update_fournisseur()" type="button" class="btn btn-warning btn-lg btn-color-custom" style="width: 100%;"><span class="glyphicon glyphicon-ok-sign"></span> Mettre à jour</button>
 				</div>
 
 			</div>

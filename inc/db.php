@@ -55,7 +55,7 @@ class DbSingleton
         }
         // Constructor
         private function __construct() {
-                $this->_connection = new PDO("mysql:host=$this->_host;dbname=$this->_database", $this->_username, $this->_password);
+                $this->_connection = new PDO("mysql:host=$this->_host;dbname=$this->_database", $this->_username, $this->_password, array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'));
                 
         }
         // Magic method clone is empty to prevent duplication of connection

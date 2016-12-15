@@ -44,6 +44,26 @@ switch($_GET['action'])  {
   case 'update_article' :
          update_article();
          break;
+
+  case 'get_fournisseurs' :
+         get_fournisseurs();
+         break;
+
+  case 'get_id_fournisseurs' :
+         get_id_fournisseurs();
+         break;
+
+  case 'update_fournisseur' :
+         update_fournisseur();
+         break;
+
+  case 'add_fournisseur' :
+         add_fournisseur();
+         break;
+
+  case 'delete_fournisseur' :
+         delete_fournisseur();
+         break;
 }
 
 function get_articles() {
@@ -162,6 +182,119 @@ function delete_article() {
     return false;
   }
 }
+
+/*** fournisseur ***/
+
+function get_fournisseurs() {
+    try
+    {   
+        $bdd = Dbsingleton::getInstance()->getConnection();
+        //var_dump($bdd);
+        $req = $bdd->query('SELECT * FROM fournisseurs');
+        $data=array();
+
+        //Convertit en JSON  
+        while($result = $req->fetch()){
+          $data[] =array(
+        "id"=> $result['id'],
+          "name"=>$result['name'],
+          "localisation"=>$result['localisation'],
+          "reference"=>$result['reference'],
+          "date"=>$result['date']);
+        }
+        //ferme la connexion ?
+        //$bdd=null;
+    }  
+    catch(PDOException $e) 
+    {
+        die('Erreur : ' . $e->getMessage()); 
+    }
+
+print_r(json_encode($data));
+return json_encode($data);
+
+}
+
+function get_id_fournisseurs() {
+  $bdd = Dbsingleton::getInstance()->getConnection();
+  $data = json_decode(file_get_contents("php://input"));
+  $id = $data->id;
+  $data=array();
+  $req = $bdd->query('SELECT * FROM fournisseurs WHERE id =' .$id);
+      
+        while($result = $req ->fetch()){
+
+          $data[] =array(
+            "id"=> $result['id'],
+            "name"=>$result['name'],
+            "localisation"=>$result['localisation'],
+            "reference"=>$result['reference'],
+            "date"=>$result['date']);
+        }
+  print_r(json_encode($data));
+  return json_encode($data);
+}
+
+function update_fournisseur() {
+    $bdd = Dbsingleton::getInstance()->getConnection();
+    $data = json_decode(file_get_contents("php://input"));
+    $id = $data->id;
+    $name = $data->name;
+    $localisation = $data->localisation;
+    $reference = $data->reference;
+    $date = $data->date;
+
+    $requete = "UPDATE fournisseurs SET name ='".$name."' , localisation ='".$localisation."' , reference ='".$reference."', date ='".$date."' WHERE id=".$id;
+    $req = $bdd->query($requete);
+
+    if ($req) {
+        $arr = array('msg' => "Réussi", 'erreur' => '');
+        $jsn = json_encode($arr);
+    } else {
+        $arr = array('msg' => "", 'erreur' => 'Echoué');
+        $jsn = json_encode($arr);
+    }
+}
+
+function add_fournisseur() {
+  $bdd = Dbsingleton::getInstance()->getConnection();
+  $data = json_decode(file_get_contents("php://input"));
+  $name = $data->name;
+  $localisation = $data->localisation;
+  $reference = $data->reference;
+  $date = $data->date;
+
+  $requete = "INSERT INTO fournisseurs (name, localisation, reference, date) VALUES ('".$name."', '".$localisation."', '".$reference."', '".$date."' )";
+  $req = $bdd->query($requete);
+
+  if ($req) {
+      $arr = array('msg' => "Réussi", 'erreur' => '');
+      $jsn = json_encode($arr);
+  } else {
+      $arr = array('msg' => "", 'erreur' => 'Echoué');
+      $jsn = json_encode($arr);
+  }
+}
+
+function delete_fournisseur() {
+  $bdd = Dbsingleton::getInstance()->getConnection();
+  $data = json_decode(file_get_contents("php://input"));
+  $id = $data->id;
+
+  $req = $bdd->query("DELETE FROM fournisseurs WHERE id =".$id);
+
+  if($req){
+    echo "l'article a bien eté supprimé" ;
+    return true;
+  } 
+  else {
+    $bdd->errorInfo();
+    echo "un problème est survenu !";
+    return false;
+  }
+}
+
+/*** login ***/
 
 function check_token() {
   $bdd = Dbsingleton::getInstance()->getConnection();

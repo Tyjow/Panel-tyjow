@@ -34,6 +34,11 @@ app.controller('DataCtrl', function($scope, $http, $resource, DTOptionsBuilder, 
 	$scope.fournisseurs = $scope.text;
 	$scope.stock = $scope.text;
 
+	$scope.textF = "Aucun fournisseur sélectionné.";
+	$scope.name = $scope.textF;
+	$scope.localisation = $scope.textF;
+	$scope.referenceF = $scope.textF;
+
 	$scope.blankText = "";
 	
 	$scope.blank_text = function() {
@@ -99,6 +104,57 @@ app.controller('DataCtrl', function($scope, $http, $resource, DTOptionsBuilder, 
 		    $scope.get_articles();
 		})
     }
+
+    // Fonction fournisseurs
+    var vf = this;
+	$scope.get_fournisseurs = function() {
+	    $http.get('inc/fonction.php?action=get_fournisseurs').success(function(datas) {
+	    	//console.log(datas);
+	        vf.datas = datas;
+	    });	
+	}
+
+    $scope.get_id_fournisseurs = function(id) {
+		$http.post('inc/fonction.php?action=get_id_fournisseurs',{'id'     : id}).success(function(data) {
+        	$scope.id = data[0]["id"];
+            $scope.name = data[0]["name"];
+            $scope.localisation = data[0]["localisation"];
+            $scope.referenceF = data[0]["reference"];
+            $scope.dateF = data[0]["date"];
+			//console.log($scope.articles);
+		});
+    }
+
+    $scope.update_fournisseur = function() {
+		$http.post('inc/fonction.php?action=update_fournisseur',{
+	            'id'            : $scope.id,
+	            'name'     : $scope.name.trim(),
+	            'localisation'     : $scope.localisation.trim(),
+	            'reference'    : $scope.referenceF.trim(),
+	            'date' : $scope.dateF.trim()
+			}).success(function (data) {
+        	$scope.get_fournisseurs();
+		});
+    }
+
+    $scope.add_fournisseur = function() {
+		$http.post('inc/fonction.php?action=add_fournisseur',{
+	            'name'     : $scope.nameAdd.trim(),
+	            'localisation'     : $scope.localisationAdd.trim(),
+	            'reference'    : $scope.referenceAddF.trim(),
+	            'date' : $scope.dateF.trim()
+			}).success(function (data) {
+        	$scope.get_fournisseurs();
+		});
+    }
+
+    $scope.delete_fournisseur = function(id) {  
+		$http.post('inc/fonction.php?action=delete_fournisseur',{'id'     : id}).success(function(data) {
+		    $scope.get_fournisseurs();
+		})
+    }
+
+    // Fonction login
 
     $scope.login_user = function () {  
         var data = {

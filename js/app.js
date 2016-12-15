@@ -14,6 +14,12 @@ app.config(function($stateProvider, $urlRouterProvider){
 			templateUrl: 'partials/gestion.html', 
 			controller: 'DataCtrl', 
 			controllerAs:'showCase'
-			//params: {'test': null}
+		})
+
+		.state('fournisseur', {
+			url: '/fournisseur',
+			templateUrl: 'partials/fournisseur.html', 
+			controller: 'DataCtrl', 
+			controllerAs:'showCase'
 		})
 });

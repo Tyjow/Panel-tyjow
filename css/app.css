@@ -25,13 +25,14 @@ h4 {
 	display: block;
 	margin-right: auto;
 	margin-left: auto;
-	width: 34%;
+	width: 100%;
 	padding-top: 9em;
 	padding-bottom: 3em;
 }
 .intro > h1 {
 	margin: 0;
 	font-size: 4em;
+	text-align: center;
 }
 
 /*** article ***/
@@ -193,6 +194,10 @@ table {
 	white-space: nowrap;
 	overflow: hidden;
 	width: 10vw;
+}
+.tronque_hov:hover {
+	white-space: normal;
+	overflow: visible;
 }
 .search_article {
 	color: #e1e5ea;
