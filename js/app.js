@@ -22,4 +22,11 @@ app.config(function($stateProvider, $urlRouterProvider){
 			controller: 'DataCtrl', 
 			controllerAs:'showCase'
 		})
+
+		.state('user', {
+			url: '/user',
+			templateUrl: 'partials/user.html', 
+			controller: 'DataCtrl', 
+			controllerAs:'showCase'
+		})
 });

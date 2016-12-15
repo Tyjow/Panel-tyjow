@@ -254,7 +254,7 @@ table {
 	box-shadow: 0 0 1px #666;
 }
 .box_button {
-	width: 100%;
+	width: 85%;
 	border-radius: 1px;
 	text-align: center;
 	background-color: #f2f2f2;
@@ -263,11 +263,11 @@ table {
 }
 .box_button h4 {
 	color: #4b5056;
-	padding: 0.5em;
+	padding: 0.1em;
 }
 .add_button {
     display: inline-block;
-    margin: 20px;
+    margin: 10px;
     font-size: 16px;
     letter-spacing: 0.07em;
     text-transform: uppercase;
@@ -542,4 +542,8 @@ input[type="radio"]:checked + span.customRadio::after {
 }
 .login_butt button {
 
+}
+
+.userAdd {
+	padding: 1em !important;
 }

@@ -64,6 +64,26 @@ switch($_GET['action'])  {
   case 'delete_fournisseur' :
          delete_fournisseur();
          break;
+
+  case 'get_users' :
+         get_users();
+         break;
+
+  case 'get_id_users' :
+         get_id_users();
+         break;
+
+  case 'update_user' :
+         update_user();
+         break;
+
+  case 'add_user' :
+         add_user();
+         break;
+
+  case 'delete_user' :
+         delete_user();
+         break;
 }
 
 function get_articles() {
@@ -282,6 +302,108 @@ function delete_fournisseur() {
   $id = $data->id;
 
   $req = $bdd->query("DELETE FROM fournisseurs WHERE id =".$id);
+
+  if($req){
+    echo "l'article a bien eté supprimé" ;
+    return true;
+  } 
+  else {
+    $bdd->errorInfo();
+    echo "un problème est survenu !";
+    return false;
+  }
+}
+
+/*** user ***/
+
+function get_users() {
+    try
+    {   
+        $bdd = Dbsingleton::getInstance()->getConnection();
+        //var_dump($bdd);
+        $req = $bdd->query('SELECT * FROM users');
+        $data=array();
+
+        //Convertit en JSON  
+        while($result = $req->fetch()){
+          $data[] =array(
+        "id"=> $result['id'],
+        "username"=>$result['username']);
+        }
+        //ferme la connexion ?
+        //$bdd=null;
+    }  
+    catch(PDOException $e) 
+    {
+        die('Erreur : ' . $e->getMessage()); 
+    }
+
+print_r(json_encode($data));
+return json_encode($data);
+
+}
+
+function get_id_users() {
+  $bdd = Dbsingleton::getInstance()->getConnection();
+  $data = json_decode(file_get_contents("php://input"));
+  $id = $data->id;
+  $data=array();
+  $req = $bdd->query('SELECT * FROM users WHERE id =' .$id);
+      
+        while($result = $req ->fetch()){
+
+          $data[] =array(
+            "id"=> $result['id'],
+            "username"=>$result['username'],
+            "password"=>$result['password']);
+        }
+  print_r(json_encode($data));
+  return json_encode($data);
+}
+
+function update_user() {
+    $bdd = Dbsingleton::getInstance()->getConnection();
+    $data = json_decode(file_get_contents("php://input"));
+    $id = $data->id;
+    $username = $data->username;
+    $password = sha1($data->password);
+
+    $requete = "UPDATE users SET username ='".$username."' , password ='".$password."' WHERE id=".$id;
+    $req = $bdd->query($requete);
+
+    if ($req) {
+        $arr = array('msg' => "Réussi", 'erreur' => '');
+        $jsn = json_encode($arr);
+    } else {
+        $arr = array('msg' => "", 'erreur' => 'Echoué');
+        $jsn = json_encode($arr);
+    }
+}
+
+function add_user() {
+  $bdd = Dbsingleton::getInstance()->getConnection();
+  $data = json_decode(file_get_contents("php://input"));
+  $username = $data->username;
+  $password = sha1($data->password);
+
+  $requete = "INSERT INTO users (username, password) VALUES ('".$username."', '".$password."')";
+  $req = $bdd->query($requete);
+
+  if ($req) {
+      $arr = array('msg' => "Réussi", 'erreur' => '');
+      $jsn = json_encode($arr);
+  } else {
+      $arr = array('msg' => "", 'erreur' => 'Echoué');
+      $jsn = json_encode($arr);
+  }
+}
+
+function delete_user() {
+  $bdd = Dbsingleton::getInstance()->getConnection();
+  $data = json_decode(file_get_contents("php://input"));
+  $id = $data->id;
+
+  $req = $bdd->query("DELETE FROM users WHERE id =".$id);
 
   if($req){
     echo "l'article a bien eté supprimé" ;

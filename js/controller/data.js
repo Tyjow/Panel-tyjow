@@ -48,9 +48,11 @@ app.controller('DataCtrl', function($scope, $http, $resource, DTOptionsBuilder, 
 	$scope.tronqueClass = 'unactive';
 
 	$scope.changeClass = function() {
-			$scope.tronqueClass = 'active';
-
+		$scope.tronqueClass = 'active';
 	}
+	/*$scope.newAttr = function() {
+		$scope.stocks = $scope.stock;
+	}*/
 
 	var vm = this;
 	$scope.get_articles = function() {
@@ -106,6 +108,7 @@ app.controller('DataCtrl', function($scope, $http, $resource, DTOptionsBuilder, 
     }
 
     // Fonction fournisseurs
+
     var vf = this;
 	$scope.get_fournisseurs = function() {
 	    $http.get('inc/fonction.php?action=get_fournisseurs').success(function(datas) {
@@ -154,6 +157,51 @@ app.controller('DataCtrl', function($scope, $http, $resource, DTOptionsBuilder, 
 		})
     }
 
+    // Fonction user
+
+    var vu = this;
+	$scope.get_users = function() {
+	    $http.get('inc/fonction.php?action=get_users').success(function(datas) {
+	    	//console.log(datas);
+	        vu.datas = datas;
+	    });	
+	}
+
+    $scope.get_id_users = function(id) {
+		$http.post('inc/fonction.php?action=get_id_users',{'id'     : id}).success(function(data) {
+        	$scope.id = data[0]["id"];
+            $scope.username = data[0]["username"];
+            $scope.password = data[0]["password"];
+			//console.log($scope.articles);
+		});
+    }
+
+    $scope.update_user = function() {
+		$http.post('inc/fonction.php?action=update_user',{
+	            'id'            : $scope.id,
+	            'username'     : $scope.username.trim(),
+	            'password'     : $scope.password.trim()
+			}).success(function (data) {
+        	$scope.get_users();
+		});
+    }
+
+    $scope.add_user = function() {
+		$http.post('inc/fonction.php?action=add_user',{
+	            'username'     : $scope.usernameAdd.trim(),
+	            'password'     : $scope.passwordAdd.trim()
+			}).success(function (data) {
+			localStorage.setItem("token", JSON.stringify(data.trim()));
+        	$scope.get_users();
+		});
+    }
+
+    $scope.delete_user = function(id) {  
+		$http.post('inc/fonction.php?action=delete_user',{'id'     : id}).success(function(data) {
+		    $scope.get_users();
+		})
+    }
+
     // Fonction login
 
     $scope.login_user = function () {  
@@ -187,9 +235,6 @@ app.controller('DataCtrl', function($scope, $http, $resource, DTOptionsBuilder, 
             console.error(error);
         });
 	}
-
-	
-	
 	
 	$scope.logout_user = function(){
 		//Si l'utilisateur n'est pas connecté

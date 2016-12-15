@@ -18,7 +18,7 @@
 		<ul>
 			<li><a ui-sref="gestion">Gestion des stocks</a></li>
 			<li><a ui-sref="fournisseur">Liste des fournisseurs</a></li>
-			<li><a href="#">Gestion des utilisateurs</a></li>
+			<li><a ui-sref="user">Gestion des utilisateurs</a></li>
 		</ul>
 	</nav>
 	<div class="log">
@@ -33,9 +33,7 @@
 <div class="article">
 	
 	<div class="header_article">
-		<div class="img_article">
-			<img src="img/logo.jpg" alt="Aucun fournisseurs sélectionné."/>
-		</div>
+		
 		<div class="content_article">
 			<h2>Information</h2>
 			<ul>
@@ -91,7 +89,7 @@
 						<div class="form-group">
 							<h4>Date</h4>
 							<div class="date_field">
-	  							<input class="form-control size_input" name="date" type="text" datepicker="" ng-model="date" ng-change="dateChanged(date)" placeholder="Date..."/>
+	  							<input class="form-control size_input" name="date" type="text" datepicker="" ng-model="dateF" ng-change="dateChanged(date)" placeholder="Date..."/>
 	  							<p>Cliquez sur le champ pour sélectionner la date.</p>
   							</div>
 						</div>
@@ -188,7 +186,7 @@
 
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-					<h3 class="modal-title custom_align" id="Heading">Modifier le fournisseur</h3>
+					<h3 class="modal-title custom_align" id="Heading">Modifier un fournisseur</h3>
 				</div>
 
 				<div class="modal-body">

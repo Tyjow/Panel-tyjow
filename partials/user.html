@@ -1,0 +1,179 @@
+<div class="container col-md-12 nav-flex">
+
+	<div class="title">
+		<h1>2TECH</h1>
+	</div>
+	<nav>
+		<ul>
+			<li><a ui-sref="gestion">Gestion des stocks</a></li>
+			<li><a ui-sref="fournisseur">Liste des fournisseurs</a></li>
+			<li><a ui-sref="user">Gestion des utilisateurs</a></li>
+		</ul>
+	</nav>
+	<div class="log">
+		<a ng-click="logout_user()" data-toggle="tooltip" data-placement="top"><span class="glyphdeco glyphicon glyphicon-off" aria-hidden="true"></span>Déconnexion</a>
+	</div>
+</div>
+
+<div class="intro">
+	<h1>Gestion des utilisateurs</h1>
+</div>
+
+<div class="article">
+	
+	<div class="header_article">
+		
+		<div class="content_article">
+			<h2>Administration</h2>
+			<ul>
+				<li class="col-md-12 userAdd">
+					<a ng-click="blank_text()" data-title="Add" data-toggle="modal" data-target="#add" class="add_button btn_gradient">
+						<span>
+							<i class="fa fa-user"></i>
+						</span>
+					</a>
+					<p>Ajouter un utilisateur</p>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="middle_article">
+
+		<div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="add" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+						<h3 class="modal-title custom_align" id="Heading">Ajouter un utilisateur</h3>
+					</div>
+
+					<div class="modal-body">
+						<div class="form-group">
+							<h4>Nom</h4>
+							<input class="form-control " name="username" ng-model="usernameAdd" type="text" placeholder="Nom...">
+						</div>
+
+						<div class="form-group">
+							<h4>Mot de passe</h4>
+							<input class="form-control" name="password" ng-model="passwordAdd" type="text" placeholder="Mot de passe...">
+						</div>
+					</div>
+
+					<div class="modal-footer ">
+						<button name="add_user" ng-click="add_user()" type="button" class="btn btn-warning btn-lg btn-color-custom" style="width: 100%;"><span class="glyphicon glyphicon-ok-sign"></span> Ajouter l'utilisateur</button>
+					</div>
+
+				</div>
+			<!-- /.modal-content --> 
+			</div>
+		</div>
+	</div>
+
+	<div class="search_article">
+		<div class="inner_search_article">
+			<div class="content_table">
+				<form method="POST">
+					<table id="example" dt-options="dtOptions" datatable="ng" class="row-border hover" ng-init="get_users()">
+						<thead>
+							<tr>
+							  <!-- <th class="table_link">Id</th> -->
+							  <th class="table_link">Nom</th>
+							  <!-- <th class="table_link">Mot de passe</th> -->
+							  <th class="table_link">Sélectionnez</th>
+							</tr>
+						</thead>
+						<tfoot>
+							<tr>
+							  <!-- <th class="table_link_foot">Id</th> -->
+							  <th class="table_link_foot">Nom</th>
+							  <!-- <th class="table_link_foot">Mot de passe</th> -->
+							  <th class="table_link_foot">Sélectionnez</th>
+							</tr>
+						</tfoot>
+						<tbody>
+							<tr ng-repeat="data in showCase.datas track by $index" class='table-line'>
+								<!-- <td class="table-data"><p>{{data.id}}</p></td> -->
+								<td class="table-data"><p>{{data.username | capitalize}}</p></td>
+								<!-- <td class="table-data"><p>{{data.password}}</p></td> -->
+								<td class="table-data select_box">
+									<!-- <div class="box_butt">
+										<input ng-click="get_id_users(data.id)" ng-model="checky" id="result" type="radio" name="id"/><span class="customRadio"></span>
+									</div> -->
+									<div class="box_butt" data-placement="top" data-toggle="tooltip" title="Edit">
+										<button ng-click="get_id_users(data.id)" class="btn btn-primary btn-xs btn-custom" data-title="Edit" data-toggle="modal" data-target="#edit" >
+											<img src="img/pencil.png">
+										</button>
+									</div>
+									<div class="box_butt" data-placement="top" data-toggle="tooltip" title="Delete">
+										<button ng-click="get_id_users(data.id)" class="btn btn-primary btn-xs btn-custom" data-title="Delete" data-toggle="modal" data-target="#delete" >
+											<img src="img/cross.png">
+										</button>
+									</div>
+									<div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="delete" aria-hidden="true">
+										<div class="modal-dialog">
+											<div class="modal-content">
+
+												<div class="modal-header">
+													<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+													<h3 class="modal-title custom_align" id="Heading">Supprimer un utilisateur</h3>
+												</div>
+
+												<div class="modal-body">
+													<p class="valid_text">Etes-vous sûr de vouloir supprimer l'utilisateur ?</p>
+												</div>
+
+												<div class="modal-footer ">
+													<button ng-click="delete_user(data.id)" type="button" class="btn btn-warning btn-lg btn-color-custom" style="width: 100%;"><span class="glyphicon glyphicon-ok-sign"></span> Supprimer l'utilisateur</button>
+												</div>
+
+											</div>
+										</div>
+									</div>
+								</td>
+
+							</tr>
+						</tbody>
+					</table>
+				</form>
+	    	</div>
+    	</div>
+
+	<div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+					<h3 class="modal-title custom_align" id="Heading">Modifier l'utilisateur</h3>
+				</div>
+
+				<div class="modal-body">
+					<div class="form-group">
+						<h4>Nom</h4>
+						<input class="form-control " name="username" ng-model="username" type="text" placeholder="Nom...">
+					</div>
+
+					<div class="form-group">
+						<h4>Mot de passe</h4>
+						<input class="form-control" name="password" ng-model="password" type="text" placeholder="Localisation...">
+					</div>
+
+					<!-- <div class="form-group">
+						<textarea rows="2" class="form-control" placeholder="CB 106/107 Street # 11 Wah Cantt Islamabad Pakistan"></textarea>
+					</div> -->
+				</div>
+
+				<div class="modal-footer ">
+					<button name="update_user" ng-click="update_user()" type="button" class="btn btn-warning btn-lg btn-color-custom" style="width: 100%;"><span class="glyphicon glyphicon-ok-sign"></span> Mettre à jour</button>
+				</div>
+
+			</div>
+		<!-- /.modal-content --> 
+		</div>
+	</div>
+
+	</div>
+
+</div>
